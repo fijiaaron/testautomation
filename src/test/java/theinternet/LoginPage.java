@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage
 {
 	WebDriver driver;
+	
 	String url = "https://the-internet.herokuapp.com/login";
 	
 	@FindBy(id="username")
@@ -21,6 +22,9 @@ public class LoginPage
 	@FindBy(id="flash")
 	WebElement message;
 
+	String successfulLoginMessage = "You logged into a secure area!";
+	String invalidPasswordMessage = "Your password is invalid!";
+	
 	// constructor function
 	public LoginPage(WebDriver driver)
 	{

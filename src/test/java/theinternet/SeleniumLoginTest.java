@@ -1,7 +1,7 @@
 package theinternet;
 
-import static org.testng.Assert.assertTrue;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.*;
 
 public class SeleniumLoginTest extends SeleniumBaseTest
 {	
@@ -20,7 +20,7 @@ public class SeleniumLoginTest extends SeleniumBaseTest
 		
 		/* Assert */
 		System.out.println("message: " + message);
-		assertTrue(message.contains("You logged into a secure area!"));
+		assertThat(message).contains(loginPage.successfulLoginMessage);
 	}
 	
 	@Test
@@ -38,6 +38,6 @@ public class SeleniumLoginTest extends SeleniumBaseTest
 		
 		/* Assert */
 		System.out.println("message: " + message);
-		assertTrue(message.contains("Your password is invalid!"));
+		assertThat(message).contains(loginPage.invalidPasswordMessage);
 	}
 }
