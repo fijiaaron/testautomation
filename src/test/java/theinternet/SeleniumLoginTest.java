@@ -4,6 +4,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class SeleniumLoginTest extends SeleniumBaseTest
 {	
 	public enum LoginStatus {
@@ -11,11 +16,22 @@ public class SeleniumLoginTest extends SeleniumBaseTest
 	}
 	
 	@DataProvider
-	public Object[][] users()
+	public Object[][] users() throws IOException
 	{
+		InputStream input = new FileInputStream("src/test/resources/users.properties");
+		System.out.println(input);
+		Properties users = new Properties();
+		users.load(input);
+		
+		String validUsername = users.getProperty("valid.username");
+		String validPassword = users.getProperty("valid.password");
+		String invalidUsername = users.getProperty("invalid.username");
+		String invalidPassword = users.getProperty("invalid.password");
+		
 		return new Object[][] {
-			{ "tomsmith", "SuperSecretPassword!", LoginStatus.SUCCESS },
-			{ "tomsmith", "SuperWrongPassword!}", LoginStatus.INVALID_PASSWORD }
+			{ validUsername, validPassword, LoginStatus.SUCCESS },
+			{ validUsername, invalidPassword, LoginStatus.INVALID_PASSWORD },
+			{ invalidUsername, invalidPassword, LoginStatus.INVALID_USER }
 		};
 	}
 	
@@ -30,7 +46,11 @@ public class SeleniumLoginTest extends SeleniumBaseTest
 		{
 			expectedMessage = loginPage.invalidPasswordMessage;
 		}
-		
+		if (loginStatus == LoginStatus.INVALID_USER)
+		{
+			expectedMessage = loginPage.invalidUserMessage;
+			
+		}
 		/* Act */
 		String message = loginPage.login(username, password);
 		

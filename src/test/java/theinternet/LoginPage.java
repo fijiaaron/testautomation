@@ -24,6 +24,7 @@ public class LoginPage
 
 	String successfulLoginMessage = "You logged into a secure area!";
 	String invalidPasswordMessage = "Your password is invalid!";
+	String invalidUserMessage = "Your username is invalid!";
 	
 	// constructor function
 	public LoginPage(WebDriver driver)
