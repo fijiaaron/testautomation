@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 
 public abstract class SeleniumBaseTest
 {
-	WebDriver driver;
+	protected WebDriver driver;
 	
 	@BeforeClass
 	public void configureDrivers()
