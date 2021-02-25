@@ -21,14 +21,14 @@ public abstract class SeleniumBaseTest
 		if (platform.contains("Windows"))
 		{
 			System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-			System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-			System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
-			System.setProperty("webdriver.edge.driver", "msedgedriver.exe");	
+			System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
+			System.setProperty("webdriver.ie.driver", "src/test/resources/IEDriverServer.exe");
+			System.setProperty("webdriver.edge.driver", "src/test/resources/msedgedriver.exe");	
 		}
 		else if (platform.contains("Mac"))
 		{
-			System.setProperty("webdriver.chrome.driver", "chromedriver");
-			System.setProperty("webdriver.gecko.driver", "geckodriver");
+			System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+			System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
 		}
 			
 	}
